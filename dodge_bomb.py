@@ -51,6 +51,9 @@ def main():
             if event.type == pg.QUIT: 
                 return
         
+        if kk_rct.colliderect(bd_rct): #ぶつかっている
+            return
+        
         screen.blit(bg_img, [0, 0])
         
         """工科トン"""
@@ -62,12 +65,20 @@ def main():
                 sum_mv[1] += mv[1]
                 
         kk_rct.move_ip(sum_mv[0],sum_mv[1])
+        if check_bound(kk_rct) != (True,True):
+            kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
         screen.blit(kk_img, kk_rct)
         
         
         """ばくだん"""
         bd_rct.move_ip(vx,vy)
+        yoko, tate = check_bound(bd_rct)
+        if not yoko:
+            vx *= -1
+        if not tate:
+            vy *= -1
         screen.blit(bd_img,bd_rct)
+        
         pg.display.update()
         tmr += 1
         clock.tick(50)
