@@ -94,7 +94,7 @@ def main():
         
         
         
-        """ばくだん"""
+        """ばくだん."""
         bd_rct.move_ip(vx,vy) #爆弾を移動させる
         yoko, tate = check_bound(bd_rct)
         if not yoko: #横方向にはみ出したら
